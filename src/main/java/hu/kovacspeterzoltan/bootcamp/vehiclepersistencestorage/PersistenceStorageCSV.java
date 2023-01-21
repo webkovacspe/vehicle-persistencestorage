@@ -4,25 +4,53 @@ import hu.kovacspeterzoltan.bootcamp.vehicleregister.VehicleEntity;
 import hu.kovacspeterzoltan.bootcamp.vehicleregister.VehicleStorageInterface;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 public class PersistenceStorageCSV implements VehicleStorageInterface {
     private String fileName;
-    private Map<String, VehicleEntity> allVehicle = new HashMap<String, VehicleEntity>();
+    private Map<String, VehicleEntity> allVehicle;
     public PersistenceStorageCSV() {
         this.fileName = "./vehicleStorage.csv";
     }
     @Override
     public void saveVehicle(VehicleEntity vehicle) {
-
-        String line = vehicleEntityToString(vehicle);
-
+        loadCSV();
+        if (allVehicle.get(vehicle.registrationNumber) != null) {
+            allVehicle.replace(vehicle.registrationNumber, vehicle);
+        } else {
+            allVehicle.put(vehicle.registrationNumber, vehicle);
+        }
+        saveCSV();
+    }
+    private void saveCSV() {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
         try {
-            Files.writeString(Path.of(fileName), line);
+            fw = new FileWriter(fileName, false);
+            bw = new BufferedWriter(fw);
+            for (Map.Entry<String, VehicleEntity> entry: allVehicle.entrySet()) {
+                bw.write(vehicleEntityToString(entry.getValue()));
+                bw.newLine();
+            }
+            bw.flush();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fw != null) {
+                try {
+                    assert bw != null;
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     @Override
@@ -31,16 +59,35 @@ public class PersistenceStorageCSV implements VehicleStorageInterface {
         return allVehicle.get(registrationNumber);
     }
     private void loadCSV() {
+        BufferedReader br = null;
+        FileReader fr = null;
         try {
-            String line = "";
-            BufferedReader br = new BufferedReader(new FileReader("./vehicleStorage.csv"));
+            fr = new FileReader(fileName);
+            br = new BufferedReader(fr);
+            allVehicle = new HashMap<>();
+            String line;
             while ((line = br.readLine()) != null) {
                 VehicleEntity v = stringToVehicleEntity(line);
                 allVehicle.put(v.registrationNumber, v);
             }
-            br.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fr != null) {
+                try {
+                    assert br != null;
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     private VehicleEntity stringToVehicleEntity(String line) {
