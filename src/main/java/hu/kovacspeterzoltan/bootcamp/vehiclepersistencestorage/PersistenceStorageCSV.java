@@ -1,7 +1,7 @@
 package hu.kovacspeterzoltan.bootcamp.vehiclepersistencestorage;
 
-import hu.kovacspeterzoltan.bootcamp.vehicleregister.VehicleEntity;
-import hu.kovacspeterzoltan.bootcamp.vehicleregister.VehicleStorageInterface;
+import hu.kovacspeterzoltan.bootcamp.vehicleregister.entity.VehicleEntity;
+import hu.kovacspeterzoltan.bootcamp.vehicleregister.dao.VehicleStorageInterface;
 
 import java.io.*;
 import java.util.*;

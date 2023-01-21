@@ -1,5 +1,5 @@
 import hu.kovacspeterzoltan.bootcamp.vehiclepersistencestorage.PersistenceStorageCSV;
-import hu.kovacspeterzoltan.bootcamp.vehicleregister.VehicleEntity;
+import hu.kovacspeterzoltan.bootcamp.vehicleregister.entity.VehicleEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
