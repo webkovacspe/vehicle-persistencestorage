@@ -1,17 +1,30 @@
 package hu.kovacspeterzoltan.bootcamp.vehiclepersistencestorage;
 
 import hu.kovacspeterzoltan.bootcamp.vehicleregister.entity.VehicleEntity;
-import hu.kovacspeterzoltan.bootcamp.vehicleregister.dao.VehicleStorageInterface;
+import hu.kovacspeterzoltan.bootcamp.vehicleregister.dao.VehicleRegisterStorageInterface;
 
 import java.io.*;
 import java.util.*;
 
-public class PersistenceStorageCSV implements VehicleStorageInterface {
+public class PersistenceStorageCSV implements VehicleRegisterStorageInterface {
     private String fileName;
     private Map<String, VehicleEntity> allVehicle;
     public PersistenceStorageCSV() {
         this.fileName = "./vehicleStorage.csv";
+        createFileIfNotExists();
     }
+
+    private void createFileIfNotExists() {
+        try {
+            File f = new File(fileName);
+            if (!f.exists() || f.isDirectory()) {
+                f.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void saveVehicle(VehicleEntity vehicle) {
         loadCSV();
