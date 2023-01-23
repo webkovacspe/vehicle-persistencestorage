@@ -20,20 +20,20 @@ class SaveFileTest {
     }
     @Test
     void testGetNullIfNotExists() {
-        Assertions.assertNull(storage.getVehicle("aaa"));
+        Assertions.assertNull(storage.findVehicle("aaa"));
     }
     @Test
     void testGetVehicleIfExists() {
         VehicleEntity ve = getValidVehicleEntity();
-        Assertions.assertEquals(ve.registrationNumber, storage.getVehicle(ve.registrationNumber).registrationNumber);
+        Assertions.assertEquals(ve.registrationNumber, storage.findVehicle(ve.registrationNumber).registrationNumber);
     }
     @Test
     void testSaveSomeVehicleAndAllExists() {
         saveMoreVehicle();
         VehicleEntity o1 = getVehicleEntityO1();
-        Assertions.assertEquals(o1.registrationNumber, storage.getVehicle(o1.registrationNumber).registrationNumber);
+        Assertions.assertEquals(o1.registrationNumber, storage.findVehicle(o1.registrationNumber).registrationNumber);
         VehicleEntity l3e = getVehicleEntityL3e();
-        Assertions.assertEquals(l3e.registrationNumber, storage.getVehicle(l3e.registrationNumber).registrationNumber);
+        Assertions.assertEquals(l3e.registrationNumber, storage.findVehicle(l3e.registrationNumber).registrationNumber);
     }
     @Test
     void testChangeVehicleRegister() {
@@ -41,7 +41,7 @@ class SaveFileTest {
         VehicleEntity ve = getValidVehicleEntity();
         ve.vehicleRegister = "Barack";
         storage.saveVehicle(ve);
-        Assertions.assertEquals(ve.vehicleRegister, storage.getVehicle(ve.registrationNumber).vehicleRegister);
+        Assertions.assertEquals(ve.vehicleRegister, storage.findVehicle(ve.registrationNumber).vehicleRegister);
     }
     private void saveMoreVehicle() {
         VehicleEntity o1 = getVehicleEntityO1();

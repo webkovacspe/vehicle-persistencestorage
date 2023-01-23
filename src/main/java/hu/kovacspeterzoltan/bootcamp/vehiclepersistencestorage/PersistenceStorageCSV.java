@@ -1,12 +1,12 @@
 package hu.kovacspeterzoltan.bootcamp.vehiclepersistencestorage;
 
 import hu.kovacspeterzoltan.bootcamp.vehicleregister.entity.VehicleEntity;
-import hu.kovacspeterzoltan.bootcamp.vehicleregister.dao.VehicleRegisterStorageInterface;
+import hu.kovacspeterzoltan.bootcamp.vehicleregister.storage.VehicleRegisterStorage;
 
 import java.io.*;
 import java.util.*;
 
-public class PersistenceStorageCSV implements VehicleRegisterStorageInterface {
+public class PersistenceStorageCSV implements VehicleRegisterStorage {
     private String fileName;
     private Map<String, VehicleEntity> allVehicle;
     public PersistenceStorageCSV() {
@@ -67,9 +67,9 @@ public class PersistenceStorageCSV implements VehicleRegisterStorageInterface {
         }
     }
     @Override
-    public VehicleEntity getVehicle(String registrationNumber) {
+    public VehicleEntity findVehicle(String registrationNumber) {
         loadCSV();
-        return allVehicle.get(registrationNumber);
+        return allVehicle.get(registrationNumber.toUpperCase());
     }
     private void loadCSV() {
         BufferedReader br = null;
