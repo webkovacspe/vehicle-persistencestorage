@@ -1,12 +1,12 @@
 package hu.kovacspeterzoltan.bootcamp.vehiclepersistencestorage;
 
 import hu.kovacspeterzoltan.bootcamp.vehicleregister.entity.VehicleEntity;
-import hu.kovacspeterzoltan.bootcamp.vehicleregister.storage.VehicleRegisterStorage;
+import hu.kovacspeterzoltan.bootcamp.vehicleregister.storage.VehicleRegisterStorageInterface;
 
 import java.io.*;
 import java.util.*;
 
-public class PersistenceStorageCSV implements VehicleRegisterStorage {
+public class PersistenceStorageCSV implements VehicleRegisterStorageInterface {
     private String fileName;
     private Map<String, VehicleEntity> allVehicle;
     public PersistenceStorageCSV() {

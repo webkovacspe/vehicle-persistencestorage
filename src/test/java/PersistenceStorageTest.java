@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-class SaveFileTest {
+class PersistenceStorageTest {
     private PersistenceStorageCSV storage;
     @BeforeEach
     void setUp() {
