@@ -81,7 +81,7 @@ public class PersistenceStorageCSV implements VehicleRegisterStorageInterface {
             String line;
             while ((line = br.readLine()) != null) {
                 VehicleEntity v = stringToVehicleEntity(line);
-                allVehicle.put(v.registrationNumber, v);
+                allVehicle.put(v.registrationNumber.toUpperCase(), v);
             }
         } catch (IOException e) {
             e.printStackTrace();
