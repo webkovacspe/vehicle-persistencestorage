@@ -56,7 +56,6 @@ class SaveFileTest {
         VehicleEntity ve = new VehicleEntity();
         ve.registrationNumber = "AA:BB-123";
         ve.vehicleRegister = "Alma";
-        ve.vehicle = "vehicle";
         ve.make = "Opel";
         ve.model = "Astra";
         ve.numberOfSeats = 5;
@@ -67,7 +66,6 @@ class SaveFileTest {
         VehicleEntity ve = new VehicleEntity();
         ve.registrationNumber = "BB:CC-456";
         ve.vehicleRegister = "Körte";
-        ve.vehicle = "vehicle";
         ve.make = "Ford";
         ve.model = "Focus";
         ve.numberOfSeats = 5;
@@ -78,7 +76,6 @@ class SaveFileTest {
         VehicleEntity ve = new VehicleEntity();
         ve.registrationNumber = "CC:DD-789";
         ve.vehicleRegister = "Kiss János";
-        ve.vehicle = "vehicle";
         ve.make = "Toyota";
         ve.model = "Corolla";
         ve.numberOfSeats = 5;
@@ -87,9 +84,8 @@ class SaveFileTest {
     }
     private static VehicleEntity getVehicleEntityN1() {
         VehicleEntity ve = new VehicleEntity();
-        ve.registrationNumber = "DD:EE-321";
+        ve.registrationNumber = "dd:ee-321";
         ve.vehicleRegister = "Kiss János";
-        ve.vehicle = "vehicle";
         ve.make = "Ferrari";
         ve.model = "California";
         ve.numberOfSeats = 2;

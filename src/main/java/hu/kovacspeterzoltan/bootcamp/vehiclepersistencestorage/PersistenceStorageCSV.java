@@ -108,17 +108,15 @@ public class PersistenceStorageCSV implements VehicleRegisterStorageInterface {
         VehicleEntity v = new VehicleEntity();
         v.registrationNumber = (Objects.equals(vehicleStr[0], "") ? null : vehicleStr[0]);
         v.vehicleRegister = (Objects.equals(vehicleStr[1], "") ? null : vehicleStr[1]);
-        v.vehicle = (Objects.equals(vehicleStr[2], "") ? null : vehicleStr[2]);
-        v.make = (Objects.equals(vehicleStr[3], "") ? null : vehicleStr[3]);
-        v.model = (Objects.equals(vehicleStr[4], "") ? null : vehicleStr[4]);
-        v.numberOfSeats = Integer.parseInt(vehicleStr[5]);
-        v.vehicleType = (Objects.equals(vehicleStr[6], "") ? null : vehicleStr[6]);
+        v.make = (Objects.equals(vehicleStr[2], "") ? null : vehicleStr[2]);
+        v.model = (Objects.equals(vehicleStr[3], "") ? null : vehicleStr[3]);
+        v.numberOfSeats = Integer.parseInt(vehicleStr[4]);
+        v.vehicleType = (Objects.equals(vehicleStr[5], "") ? null : vehicleStr[5]);
         return v;
     }
     private String vehicleEntityToString(VehicleEntity v) {
         return (v.registrationNumber == null ? "" : v.registrationNumber ) +
                 "," + (v.vehicleRegister == null ? "" : v.vehicleRegister ) +
-                "," + (v.vehicle == null ? "" : v.vehicle ) +
                 "," + (v.make == null ? "" : v.make ) +
                 "," + (v.model == null ? "" : v.model ) +
                 "," + v.numberOfSeats +
