@@ -1,4 +1,4 @@
-import hu.kovacspeterzoltan.bootcamp.vehiclepersistencestorage.PersistenceStorageCSV;
+import hu.kovacspeterzoltan.bootcamp.vehiclepersistencestorage.VehicleRegisterPersistenceStorageCSV;
 import hu.kovacspeterzoltan.bootcamp.vehicleregister.entity.VehicleEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 class PersistenceStorageTest {
-    private PersistenceStorageCSV storage;
+    private VehicleRegisterPersistenceStorageCSV storage;
     @BeforeEach
     void setUp() {
-        storage = new PersistenceStorageCSV();
+        storage = new VehicleRegisterPersistenceStorageCSV();
         storage.saveVehicle(getValidVehicleEntity());
     }
     @Test
