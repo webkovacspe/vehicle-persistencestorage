@@ -20,10 +20,10 @@ public class VehicleRegisterPersistenceStorageCSV implements VehicleRegisterStor
 
     @Override
     public void saveVehicle(VehicleEntity vehicle) {
-        mergeNewVehicle(vehicle);
+        updateStorage(vehicle);
         saveCSV();
     }
-    private void mergeNewVehicle(VehicleEntity vehicle) {
+    private void updateStorage(VehicleEntity vehicle) {
         loadCSV();
         if (vehicles.get(vehicle.registrationNumber) != null) {
             vehicles.replace(vehicle.registrationNumber, vehicle);
